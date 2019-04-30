@@ -29,20 +29,19 @@ func down(arr []int, index, end int) {
 	parent := index
 
 	for {
-		left := 2*parent+1
-		if left >= end || left < 0 {
+		child := 2*parent+1
+		if child >= end || child < 0 {
 			break
 		}
-		min := left
-		if right := left + 1; right < end && arr[right] < arr[left] {
-			min = right
+		if child+1 < end && arr[child+1] < arr[child] {
+			child++
 		}
 		//小顶堆
-		if arr[parent] < arr[min] {
+		if arr[parent] < arr[child] {
 			break
 		}
-		arr[parent], arr[min] = arr[min], arr[parent]
+		arr[parent], arr[child] = arr[child], arr[parent]
 
-		parent = min
+		parent = child
 	}
 }
