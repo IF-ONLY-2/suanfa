@@ -1,17 +1,10 @@
-package main
+package normal
 
-import "fmt"
-
-func main()  {
-	max()
-}
-
-func max()  {
-	arr := []int{-1, 2, 5, -7, -3, 0}
+func Max(arr []int) int {
 	max := 0
 	tempmax := 0
 	for _, temp := range arr {
-		tempmax = tempmax + temp
+		tempmax += temp
 		if tempmax > max {
 			max = tempmax
 		}
@@ -19,5 +12,5 @@ func max()  {
 			tempmax = 0
 		}
 	}
-	fmt.Println(max)
+	return max
 }

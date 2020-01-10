@@ -1,30 +1,20 @@
-package main
+package normal
 
-import "fmt"
-
-func main() {
-	arr := []int{9,8,7,6,5,4,3,2,1}
-
-	res := mergeSort(arr)
-
-	fmt.Println(res)
-}
-
-func mergeSort(arr []int) []int {
+func MergeSort(arr []int) []int {
 	if len(arr) == 1 {
 		return arr
 	}
 	mid := len(arr) / 2
-	left := mergeSort(arr[0:mid])
-	right := mergeSort(arr[mid:])
+	left := MergeSort(arr[0:mid])
+	right := MergeSort(arr[mid:])
 
 	return merge(left, right)
 }
 
 func merge(left, right []int) []int {
-	res := make([]int,0,len(left)+len(right))
+	res := make([]int, 0, len(left)+len(right))
 	i, j := 0, 0
-	for  i < len(left) && j < len(right) {
+	for i < len(left) && j < len(right) {
 		if left[i] < right[j] {
 			res = append(res, left[i])
 			i++

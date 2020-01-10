@@ -1,50 +1,27 @@
-package main
-
-import (
-	"container/heap"
-	"fmt"
-)
+package normal
 
 type User struct {
 	Name string
-	Age int
+	Age  int
 }
 
 type UserSlice []User
 
-func (US UserSlice)Len() int {return len(US)}
+func (us UserSlice) Len() int { return len(us) }
 
-func (US UserSlice)Swap(i, j int) {US[i], US[j] = US[j], US[i]}
+func (us UserSlice) Swap(i, j int) { us[i], us[j] = us[j], us[i] }
 
-func (US UserSlice)Less(i, j int) bool {return US[i].Age < US[j].Age}
+func (us UserSlice) Less(i, j int) bool { return us[i].Age < us[j].Age }
 
-func (US *UserSlice)Push(x interface{})  {
+func (us *UserSlice) Push(x interface{}) {
 	item := x.(User)
-	*US = append(*US, item)
+	*us = append(*us, item)
 }
 
-func (US *UserSlice)Pop() interface{} {
-	item := (*US)[len(*US)-1]
+func (us *UserSlice) Pop() interface{} {
+	item := (*us)[len(*us)-1]
 
-	*US = (*US)[:len(*US)-1]
+	*us = (*us)[:len(*us)-1]
 
 	return item
 }
-
-func main() {
-
-	ud := UserSlice{User{"a",5}, User{"b",2},User{"c",3}}
-
-	heap.Init(&ud)
-
-
-	fmt.Printf("%+v",ud)
-
-	for len(ud)>0 {
-		fmt.Printf("\n%+v\n",heap.Pop(&ud))
-	}
-
-	fmt.Printf("%+v",ud)
-
-}
-
